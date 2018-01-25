@@ -22,7 +22,7 @@ def return_map(prefix, gene, transcript):
 
         t_id = transcript
 
-    a_id = prefix + '|' + ''.join(t_id)
+    a_id = prefix + '|' + transcript
 
     print('\t'.join(map(str, [gene, ''.join(t_id), a_id])))
 
@@ -38,15 +38,13 @@ def main():
 
     parser.add_argument('--biotype', type=str, dest='biotype', action='append', default=['protein_coding', 'unknown_likely_coding'], help='Biotype to limit the map to.')
 
-    parser.add_argument('--prefix', type=str, dest='prefix', action='append', help='Biotype to limit the map to.') # CHange
-
     args = parser.parse_args()
 
     print('### Starting ' + args.ref[0])
 
     ref_fh = open(args.ref[0], 'r')
 
-    ref_name = os.path.splitext(args.ref[0])[0]
+    ref_name = os.path.splitext(os.path.basename(args.ref[0]))[0]
 
     limit_info = dict(gff_type=['gene', 'mRNA', 'CDS'])
 
@@ -80,7 +78,7 @@ def main():
 
     for qry in args.qry:
 
-        qry_name = os.path.splitext(qry)[0]
+        qry_name = os.path.splitext(os.path.basename(qry))[0]
 
         qry_fh = open(qry, 'r')
 
