@@ -40,8 +40,6 @@ def main():
 
     args = parser.parse_args()
 
-    print('### Starting ' + args.ref[0])
-
     ref_fh = open(args.ref[0], 'r')
 
     ref_name = os.path.splitext(os.path.basename(args.ref[0]))[0]
@@ -81,8 +79,6 @@ def main():
         qry_name = os.path.splitext(os.path.basename(qry))[0]
 
         qry_fh = open(qry, 'r')
-
-        print('### Starting ' + qry)
 
         for rec in GFF.parse(qry_fh, limit_info=limit_info):
 
