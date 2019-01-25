@@ -177,6 +177,12 @@ def main():
 
                                 return_map(qry_name, qry_gene_locus, transcript.id)
 
+                            else:
+
+                                qry_gene_locus = transcript.qualifiers.get('Parent')
+
+                                return_map(qry_name, qry_gene_locus[0], transcript.id)
+
                         elif transcript.qualifiers.get('transcript_class')[0] in ['poor_alignment', 'possible_paralog']:
 
                             # Case 3 - !Ortholog
